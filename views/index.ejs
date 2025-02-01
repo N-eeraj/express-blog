@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./partials/head", { title: "Express Blog" }) %>
+<%- include("./partials/head", {
+  title: "Express Blog",
+  pageStyle: "index.css"
+  }) %>
 <body>
   <%- include("./partials/navbar") %>
   <% if (blogs.length) { %>

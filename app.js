@@ -1,9 +1,13 @@
 const express = require("express")
 require("dotenv").config()
 
+// routers
+const authRouter = require("./server/routes/auth")
+const blogsRouter = require("./server/routes/blogs")
+
 const app = express()
 app.set("view engine", "ejs")
-app.use(express.static(__dirname + "/public"))
+app.use(express.static("./public"))
 
 app.get("/", (_req, res) => {
   const blogs = [
@@ -40,17 +44,13 @@ app.get("/", (_req, res) => {
   })
 })
 
-app.get("/login", (_req, res) => {
-  res.render("login")
-})
-
-app.get("/register", (_req, res) => {
-  res.render("register")
-})
+app.use("/", authRouter)
+app.use("/", blogsRouter)
 
 app.get("/*", (_req, res) => {
   res.render("404")
 })
 
 app.listen(process.env.PORT)
+
 console.log(`Server running on port ${process.env.PORT}`)

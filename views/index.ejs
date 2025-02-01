@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    Express Blog
-  </title>
-</head>
+<%- include("./partials/head", { title: "Express Blog" }) %>
 <body>
-  <h1>
-    Express Blog
-  </h1>
+  <%- include("./partials/navbar") %>
+  <% if (blogs.length) { %>
+    <% blogs.forEach(blog => { %>
+      <article>
+        <h2>
+          <%= blog.title %>
+        </h2>
+        <p>
+          <%= blog.description %>
+        </p>
+      </article>
+    <% }) %>
+    <%= blogs.length %> Blogs
+  <% } else { %>
+    No Blogs
+  <% } %>
+  <%- include("./partials/footer") %>
 </body>
 </html>

@@ -6,6 +6,7 @@
 - [EJS](https://ejs.co/): Template engine for embedding JavaScript into HTML
 - [SCSS](https://sass-lang.com/): A CSS preprocessor that adds features like variables and nesting
 <br />
+
 - [Nodemon](https://nodemon.io/): Auto-restarting the server during development
 - [Gulp](https://gulpjs.com/): Managing SCSS, CSS minification, etc.
 

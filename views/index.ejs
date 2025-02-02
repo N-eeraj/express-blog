@@ -6,21 +6,23 @@
   }) %>
 <body>
   <%- include("./partials/navbar") %>
-  <% if (blogs.length) { %>
-    <% blogs.forEach(blog => { %>
-      <article>
-        <h2>
-          <%= blog.title %>
-        </h2>
-        <p>
-          <%= blog.description %>
-        </p>
-      </article>
-    <% }) %>
-    <%= blogs.length %> Blogs
-  <% } else { %>
-    No Blogs
-  <% } %>
+  <main>
+    <% if (blogs.length) { %>
+      <% blogs.forEach(blog => { %>
+        <article>
+          <h2>
+            <%= blog.title %>
+          </h2>
+          <p>
+            <%= blog.description %>
+          </p>
+        </article>
+      <% }) %>
+      <%= blogs.length %> Blogs
+    <% } else { %>
+      No Blogs
+    <% } %>
+  </main>
   <%- include("./partials/footer") %>
 </body>
 </html>

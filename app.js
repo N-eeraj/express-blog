@@ -47,6 +47,14 @@ app.get("/", (_req, res) => {
 app.use("/", authRouter)
 app.use("/", blogsRouter)
 
+app.get("/about", (_req, res) => {
+  res.render("about")
+})
+
+app.get("/privacy", (_req, res) => {
+  res.render("privacy")
+})
+
 app.get("/*", (_req, res) => {
   res.render("404")
 })

@@ -4,4 +4,21 @@
       Express Blog
     </h1>
   </a>
+
+  <div class="user-auth">
+    <% if (locals.username) { %>
+      <span>
+        <%= username %>
+      </span>
+      <button class="btn-primary">
+        Logout
+      </button>
+    <% } else { %>
+      <a href="/login">
+        <button class="btn-primary">
+          Login
+        </button>
+      </a>
+     <% } %>
+  </div>
 </nav>

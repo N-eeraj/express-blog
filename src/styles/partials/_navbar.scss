@@ -1,0 +1,31 @@
+@use "./partials/colors";
+
+nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 12px;
+  border-bottom: 1px solid rgba(colors.$foreground, 0.25);
+  z-index: 10;
+
+  h1 {
+    color: colors.$foreground;
+    font-size: 22pt;
+  }
+
+  .user-auth {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  nav {
+    height: 80px;
+    padding: 24px;
+  }
+}

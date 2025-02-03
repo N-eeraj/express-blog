@@ -1,0 +1,49 @@
+@use "./partials/colors";
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 6px;
+  margin-top: auto;
+  padding: 12px;
+  border-top: 1px solid rgba(colors.$foreground, 0.25);
+
+  .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 12px;
+    font-size: 10pt;
+
+    li {
+      a {
+        color: colors.$foreground;
+        opacity: 0.7;
+        
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .copy {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    font-size: 9pt;
+
+    .symbol {
+      font-family: sans-serif;
+    }
+
+    .circle {
+      font-size: 5pt;
+    }
+
+    .github-link {
+      color: colors.$foreground;
+    }
+  }
+}

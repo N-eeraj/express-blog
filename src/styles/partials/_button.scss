@@ -1,0 +1,9 @@
+@use "./partials/colors";
+
+.btn-primary {
+  padding: 6px 14px;
+  background-color: colors.$foreground;
+  color: white;
+  font-size: 12pt;
+  border-radius: 6px;
+}

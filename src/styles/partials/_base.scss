@@ -1,8 +1,17 @@
+@use "./partials/colors";
+@use "./partials/button";
+@import url("https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Yusei Magic", sans-serif;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }
 
 a {
@@ -11,4 +20,8 @@ a {
 
 ul {
   list-style: none;
+}
+
+input {
+  font-family: sans-serif;
 }

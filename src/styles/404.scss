@@ -1,0 +1,17 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 12px;
+  flex-grow: 1;
+  background-image: url("/images/404/background.webp");
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .sub-title {
+    font-size: 1.4rem;
+  }
+}

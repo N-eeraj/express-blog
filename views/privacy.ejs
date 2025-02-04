@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./partials/layout/head", { title: "Express Blog" }) %>
+<%- include("./partials/layout/head", {
+  title: "Privacy | Express Blog",
+  pageStyle: "privacy.css",
+}) %>
 <body>
   <%- include("./partials/layout/navbar") %>
   <main>
-    <h2>
-      Privacy
-    </h2>
+    <article>
+      <h2 class="title">
+        Privacy
+      </h2>
+      <p>
+        At Express Blog, we value your privacy and are committed to safeguarding your personal information. When you log in to our website or create blog content, your login details (name, email, password) and blog data are securely stored in our MongoDB database. We use this information to authenticate your account, display your posts, and enhance your user experience. MongoDB ensures your data is encrypted and protected from unauthorized access. Your privacy is important to us, and we are dedicated to keeping your data safe.
+      </p>
+    </article>
   </main>
   <%- include("./partials/layout/footer") %>
 </body>

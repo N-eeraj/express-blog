@@ -1,8 +1,8 @@
-@use "./partials/colors";
 @use "./mixins/about/header";
 @use "./mixins/about/features";
 
 main {
+  width: 100%;
   max-width: 980px;
   margin: 0 auto;
   padding: 4px 8px;

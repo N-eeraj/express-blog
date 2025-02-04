@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./partials/head", {
+<%- include("./partials/layout/head", {
   title: "Express Blog",
   pageStyle: "404.css"
 }) %>
 <body>
-  <%- include("./partials/navbar") %>
+  <%- include("./partials/layout/navbar") %>
   <main>
     <h2 class="title">
       Oops! Page not found
@@ -19,6 +19,6 @@
       </button>
     </a>
   </main>
-  <%- include("./partials/footer") %>
+  <%- include("./partials/layout/footer") %>
 </body>
 </html>

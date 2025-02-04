@@ -1,0 +1,14 @@
+@mixin features {
+  .features-container {
+    margin-top: 16px;
+  
+    .title {
+      font-size: 1.2rem;
+      text-decoration: underline;
+    }
+  
+    @media screen and (min-width: 720px) {
+      margin-top: 20px;
+    }
+  }
+}

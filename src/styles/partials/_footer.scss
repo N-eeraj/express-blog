@@ -14,7 +14,7 @@ footer {
     justify-content: center;
     align-items: center;
     column-gap: 12px;
-    font-size: 10pt;
+    font-size: 0.85rem;
 
     li {
       a {
@@ -32,14 +32,14 @@ footer {
     display: flex;
     align-items: center;
     column-gap: 6px;
-    font-size: 9pt;
+    font-size: 0.75rem;
 
     .symbol {
       font-family: sans-serif;
     }
 
     .circle {
-      font-size: 5pt;
+      font-size: 0.4rem;
     }
 
     .github-link {

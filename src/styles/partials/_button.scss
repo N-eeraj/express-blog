@@ -1,14 +1,16 @@
 @use "./partials/colors";
+@use "sass:color";
+
 
 .btn-primary {
   padding: 6px 14px;
   background-color: colors.$foreground;
   color: white;
-  font-size: 12pt;
+  font-size: 1rem;
   border-radius: 6px;
   transition: 400ms;
 
   &:hover {
-    background-color: lighten(colors.$foreground, 10%);
+    background-color: color.mix(white, colors.$foreground, 10%);
   }
 }

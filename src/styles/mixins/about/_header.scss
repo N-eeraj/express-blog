@@ -1,0 +1,63 @@
+@use "./partials/colors";
+
+@mixin header {
+  header {
+    .title {
+      font-size: 1.6rem;
+      text-decoration: underline;
+    }
+
+    p {
+      margin-top: 4px;
+      font-size: 1.1rem;
+
+      a {
+        padding: 0 4px;
+        text-decoration: underline;
+        color: colors.$foreground;
+        transition: 200ms;
+      }
+
+      .node-js {
+        &:hover {
+          background-color: #0d121c;
+          color: #84ba64;
+        }
+      }
+
+      .express-js {
+        &:hover {
+          background-color: #0d1117;
+          color: #e6edf3;
+        }
+      }
+
+      .ejs {
+        &:hover {
+          background-color: #b4ca65;
+          color: #a91e50;
+        }
+      }
+
+      .mongo-db {
+        &:hover {
+          background-color: #00ED64;
+          color: #001E2B;
+        }
+      }
+
+      .scss {
+        &:hover {
+          background-color: #bf4080;
+          color: #ffffff;
+        }
+      }
+    }
+    
+    @media screen and (min-width: 720px) {
+      p {
+        margin-top: 6px;
+      }
+    }
+  }
+}

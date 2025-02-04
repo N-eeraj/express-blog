@@ -8,12 +8,13 @@ nav {
   align-items: center;
   height: 60px;
   padding: 12px;
+  background-color: inherit;
   border-bottom: 1px solid rgba(colors.$foreground, 0.25);
   z-index: 10;
 
   h1 {
     color: colors.$foreground;
-    font-size: 22pt;
+    font-size: 2rem;
   }
 
   .user-auth {

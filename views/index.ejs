@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./partials/head", {
+<%- include("./partials/layout/head", {
   title: "Express Blog",
   pageStyle: "index.css"
   }) %>
 <body>
-  <%- include("./partials/navbar") %>
+  <%- include("./partials/layout/navbar") %>
   <main>
     <% if (blogs.length) { %>
       <% blogs.forEach(blog => { %>
@@ -23,6 +23,6 @@
       No Blogs
     <% } %>
   </main>
-  <%- include("./partials/footer") %>
+  <%- include("./partials/layout/footer") %>
 </body>
 </html>

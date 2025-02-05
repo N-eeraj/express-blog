@@ -72,4 +72,8 @@ blogsRouter.get("/my-blogs", (_req, res) => {
   })
 })
 
+blogsRouter.get("/blog/create", (_req, res) => {
+  res.render("blogsCreate")
+})
+
 module.exports = blogsRouter

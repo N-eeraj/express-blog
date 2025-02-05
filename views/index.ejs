@@ -2,27 +2,16 @@
 <html lang="en">
 <%- include("./partials/layout/head", {
   title: "Express Blog",
-  pageStyle: "index.css"
+  pageStyle: isAuthenticated ? "home/dashboard.css" : "home/landing-page.css"
 }) %>
 <body>
   <%- include("./partials/layout/navbar") %>
   <main>
-    <h2 class="title">
-      Create
-      <span>
-        Stories & Ideas
-      </span>
-    </h2>
-    <p class="content">
-      A place to read and write blogs.
-    </p>
-    <a href="/login">
-      <button class="btn-primary">
-        Start Reading
-      </button>
-    </a>
-
-    <img src="/images/home/decoration.svg" alt="decoration" class="decoration-image" />
+    <% if (isAuthenticated) { %>
+      <%- include("./partials/home/dashboard") %>
+    <% } else { %>
+      <%- include("./partials/home/landing-page") %>
+    <% } %>
   </main>
   <%- include("./partials/layout/footer") %>
 </body>

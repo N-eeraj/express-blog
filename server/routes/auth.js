@@ -10,8 +10,12 @@ authRouter.route("/login")
     console.log(req.body)
   })
 
-authRouter.get("/register", (_req, res) => {
-  res.render("register")
-})
+authRouter.route("/register")
+  .get((_req, res) => {
+    res.render("register")
+  })
+  .post((req, res) => {
+    console.log(req.body)
+  })
 
 module.exports = authRouter

@@ -1,0 +1,8 @@
+@use "./partials/colors";
+
+input {
+  padding: 12px;
+  background-color: rgba(colors.$foreground, 10%);
+  border: none;
+  border-radius: 8px;
+}

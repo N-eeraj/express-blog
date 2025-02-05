@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./partials/layout/head", { title: "Express Blog" }) %>
+<%- include("./partials/layout/head", {
+  title: "Login | Express Blog",
+  pageStyle: "auth.css",
+}) %>
 <body>
   <%- include("./partials/layout/navbar") %>
   <main>
-    <h2>
+    <h2 class="title">
       Login
     </h2>
     <form action="/login" method="post">
       <input
         type="email"
         name="email"
+        placeholder="Email"
         required />
       <input
         type="password"
         name="password"
+        placeholder="Password"
         required />
       <button class="btn-primary">
         Login

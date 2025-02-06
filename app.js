@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use("/", mainRouter)
 app.use("/", authRouter)
-app.use("/", blogsRouter)
+app.use("/blog", blogsRouter)
 
 app.get("/*", (_req, res) => {
   res.render("404")

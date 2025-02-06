@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../../partials/layout/head", {
+  title: "All Blogs | Express Blog",
+  pageStyle: "blog/list.css",
+}) %>
+<body>
+  <%- include("../../partials/layout/navbar") %>
+  <main>
+    <h2 class="title">
+      All Blogs
+    </h2>
+    <% if (blogs.length) { %>
+      <ul class="blogs-list">
+        <% blogs.forEach(blog => { %>
+          <li>
+            <a href="<%= `/blog/${blog.slug}` %>">
+              <article class="blog-card">
+                <h3>
+                  <%= blog.title %>
+                </h3>
+                <span>
+                  <%= blog.author %>
+                </span>
+                <span>
+                  <%= blog.createdAt %>
+                </span>
+                <p>
+                  <%= blog.description %>
+                </p>
+              </article>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      No Blogs
+    <% } %>
+  </main>
+  <%- include("../../partials/layout/footer") %>
+</body>
+</html>

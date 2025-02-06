@@ -18,4 +18,8 @@ authRouter.route("/register")
     console.log(req.body)
   })
 
+authRouter.post("/logout", (_req, res) => {
+  res.redirect("/login")
+})
+
 module.exports = authRouter

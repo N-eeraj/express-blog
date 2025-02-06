@@ -10,9 +10,11 @@
       <span>
         <%= username %>
       </span>
-      <button class="btn-primary">
-        Logout
-      </button>
+      <form action="/logout" method="post">
+        <button class="btn-primary">
+          Logout
+        </button>
+      </form>
     <% } else { %>
       <a href="/login">
         <button class="btn-primary">

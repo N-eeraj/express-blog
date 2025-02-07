@@ -33,7 +33,7 @@
     <% for( let index = 1; index <= Math.ceil(total / 12); index++ ) { %>
       <li>
         <a href="<%= `${pathname}?page=${index}` %>">
-          <button class="<%= `btn-primary ${page == index && "selection"}` %>">
+          <button class="<%= `btn-primary ${page == index && "selected"}` %>">
             <%= index %>
           </button>
         </a>

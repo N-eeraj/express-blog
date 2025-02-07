@@ -11,6 +11,16 @@ app.set("view engine", "ejs")
 app.use(express.static("./public"))
 app.use(express.urlencoded({ extended: true }))
 
+app.use("/", (req, _res, next) => {
+  const isAuthenticated = true
+  const username = "John Doe"
+
+  req.isAuthenticated = isAuthenticated
+  req.username = username
+
+  next()
+})
+
 app.use("/", mainRouter)
 app.use("/", authRouter)
 app.use("/blog", blogsRouter)

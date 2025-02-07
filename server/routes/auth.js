@@ -3,7 +3,10 @@ const express = require("express")
 const authRouter = express.Router()
 
 authRouter.route("/login")
-  .get((_req, res) => {
+  .get((req, res) => {
+    if (req.isAuthenticated) {
+      res.redirect("/")
+    }
     res.render("login")
   })
   .post((req, res) => {
@@ -11,14 +14,17 @@ authRouter.route("/login")
   })
 
 authRouter.route("/register")
-  .get((_req, res) => {
+  .get((req, res) => {
+    if (req.isAuthenticated) {
+      res.redirect("/")
+    }
     res.render("register")
   })
   .post((req, res) => {
     console.log(req.body)
   })
 
-authRouter.post("/logout", (_req, res) => {
+authRouter.post("/logout", (req, res) => {
   res.redirect("/login")
 })
 

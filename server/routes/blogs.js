@@ -1,5 +1,6 @@
-const express = require("express")
 const { URL } = require("url")
+const express = require("express")
+const renderWithAuthData = require("../../src/helper/renderWithAuthData")
 
 const blogsRouter = express.Router()
 
@@ -66,7 +67,7 @@ const blogs = [
 blogsRouter.get("/all", (req, res) => {
   const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
   const page = req.query.page ?? 1
-  res.render("blog/list/all", {
+  renderWithAuthData(req, res, "blog/list/all", {
     blogs,
     total: 32,
     pathname,
@@ -77,7 +78,7 @@ blogsRouter.get("/all", (req, res) => {
 blogsRouter.get("/my-blogs", (req, res) => {
   const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
   const page = req.query.page ?? 1
-  res.render("blog/list/user", {
+  renderWithAuthData(req, res, "blog/list/user", {
     blogs: blogs.filter(({ author }) => author.id === 2),
     total: 32,
     pathname,
@@ -85,18 +86,19 @@ blogsRouter.get("/my-blogs", (req, res) => {
   })
 })
 
-blogsRouter.get("/create", (_req, res) => {
-  res.render("blog/create")
+blogsRouter.get("/create", (req, res) => {
+  renderWithAuthData(req, res, "blog/create")
 })
 
 blogsRouter.get("/:slug", (req, res) => {
   const blog = blogs.find(({ slug }) => slug === req.params.slug)
   
   if (!blog) {
-    return res.status(404).render("404")
+    res.statusCode = 404
+    renderWithAuthData(req, res, "404")
   }
-  
-  res.render("blog/view", blog)
+
+  renderWithAuthData(req, res, "blog/view", blog)
 })
 
 module.exports = blogsRouter

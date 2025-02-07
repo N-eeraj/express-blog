@@ -1,0 +1,16 @@
+@use "../partials/colors";
+
+.pagination {
+  display: flex;
+  column-gap: 8px;
+  max-width: 100%;
+  overflow-x: auto;
+
+  .btn-primary {
+    background-color: rgba(colors.$foreground, 50%);
+
+    &.selected {
+      background-color: colors.$foreground;
+    }
+  }
+}

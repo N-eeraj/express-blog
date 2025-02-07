@@ -8,8 +8,24 @@
   <%- include("../partials/layout/navbar") %>
   <main>
     <h2 class="title">
-      View Blog
+      <%= title %>
     </h2>
+    <span>
+      <%= author.name %>
+    </span>
+    <span>
+      <%= createdAt %>
+    </span>
+    <ul>
+      <% tags.forEach(tag => { %>
+        <li>
+          <%= tag %>
+        </li>
+      <% }) %>
+      <li>
+      </li>
+    </ul>
+
   </main>
   <%- include("../partials/layout/footer") %>
 </body>

@@ -10,32 +10,7 @@
     <h2 class="title">
       All Blogs
     </h2>
-    <% if (blogs.length) { %>
-      <ul class="blogs-list">
-        <% blogs.forEach(blog => { %>
-          <li>
-            <a href="<%= `/blog/${blog.slug}` %>">
-              <article class="blog-card">
-                <h3>
-                  <%= blog.title %>
-                </h3>
-                <span>
-                  <%= blog.author %>
-                </span>
-                <span>
-                  <%= blog.createdAt %>
-                </span>
-                <p>
-                  <%= blog.description %>
-                </p>
-              </article>
-            </a>
-          </li>
-        <% }) %>
-      </ul>
-    <% } else { %>
-      No Blogs
-    <% } %>
+    <%- include("../../partials/blog-list") %>
   </main>
   <%- include("../../partials/layout/footer") %>
 </body>

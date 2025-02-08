@@ -1,18 +1,15 @@
-const express = require("express")
 const bcrypt = require("bcryptjs")
 const User = require("../models/User")
 
-const authRouter = express.Router()
-
-authRouter.route("/login")
-  .get((req, res) => {
+class UserController {
+  static loginView(req, res) {
     if (req.isAuthenticated) {
       res.redirect("/")
     }
     res.render("login")
-  })
-  .post(async (req, res) => {
-    console.log(req.body)
+  }
+
+  static async login(req, res) {
     const userByEmail = await User.findOne({
       email: req.body.email,
     })
@@ -26,16 +23,16 @@ authRouter.route("/login")
       return res.redirect("/login")
     }
     res.redirect("/")
-  })
+  }
 
-authRouter.route("/register")
-  .get((req, res) => {
+  static registerView(req, res) {
     if (req.isAuthenticated) {
       res.redirect("/")
     }
     res.render("register")
-  })
-  .post(async (req, res) => {
+  }
+
+  static async register(req, res) {
     const userByEmail = await User.findOne({
       email: req.body.email,
     })
@@ -55,10 +52,11 @@ authRouter.route("/register")
       console.error(error)
       res.render("register")
     }
-  })
+  }
 
-authRouter.post("/logout", (req, res) => {
-  res.redirect("/login")
-})
+  static async logout(req, res) {
+    res.redirect("/login")
+  }
+}
 
-module.exports = authRouter
+module.exports = UserController

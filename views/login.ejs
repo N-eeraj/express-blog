@@ -10,6 +10,7 @@
     <h2 class="title">
       Login
     </h2>
+
     <form action="/login" method="post">
       <input
         type="email"
@@ -25,6 +26,13 @@
         Login
       </button>
     </form>
+
+    <span>
+      Don't have an account?
+      <a href="/register" class="segue-link">
+        Register Now
+      </a>
+    </span>
   </main>
   <%- include("./partials/layout/footer") %>
 </body>

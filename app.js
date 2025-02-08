@@ -23,8 +23,8 @@ app.use("/", (req, _res, next) => {
   next()
 })
 
-app.use("/", mainRouter)
-app.use("/", authRouter)
+app.use(mainRouter)
+app.use(authRouter)
 app.use("/blog", blogsRouter)
 
 app.get("/*", (_req, res) => {

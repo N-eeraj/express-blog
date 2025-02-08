@@ -63,7 +63,6 @@ const blogs = [
   },
 ]
 
-
 blogsRouter.get("/all", (req, res) => {
   const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
   const page = req.query.page ?? 1

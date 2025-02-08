@@ -1,6 +1,8 @@
 const express = require("express")
 require("dotenv").config()
 
+const connectDB = require("./server/config/db")
+
 // routers
 const mainRouter = require("./server/routes/main")
 const authRouter = require("./server/routes/auth")
@@ -12,8 +14,8 @@ app.use(express.static("./public"))
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/", (req, _res, next) => {
-  const isAuthenticated = true
-  const username = "John Doe"
+  const isAuthenticated = false
+  const username = null
 
   req.isAuthenticated = isAuthenticated
   req.username = username
@@ -29,6 +31,7 @@ app.get("/*", (_req, res) => {
   res.render("404")
 })
 
-app.listen(process.env.PORT)
-
-console.log(`Server running on port ${process.env.PORT}`)
+connectDB(() => {
+  app.listen(process.env.PORT)
+  console.log(`Server running on port: ${process.env.PORT}`)
+})

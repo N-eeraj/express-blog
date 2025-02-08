@@ -11,6 +11,7 @@ authRouter.route("/login")
   })
   .post((req, res) => {
     console.log(req.body)
+    res.redirect("/")
   })
 
 authRouter.route("/register")
@@ -22,6 +23,7 @@ authRouter.route("/register")
   })
   .post((req, res) => {
     console.log(req.body)
+    res.redirect("/")
   })
 
 authRouter.post("/logout", (req, res) => {

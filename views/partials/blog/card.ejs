@@ -1,0 +1,27 @@
+<a href="<%= `/blog/${slug}` %>">
+  <article class="blog-card">
+    <h3 class="title">
+      <%= title %>
+    </h3>
+
+    <p class="description">
+      <%= description %>
+    </p>
+
+    <span class="name">
+      <%= author.name %>
+    </span>
+
+    <span class="created-at">
+      <%= createdAt.toLocaleDateString("en-IN") %>
+    </span>
+
+    <ul class="tags">
+      <% tags.forEach(tag => { %>
+        <li class="tag">
+          <%= tag %>
+        </li>
+      <% }) %>
+    </ul>
+  </article>
+</a>

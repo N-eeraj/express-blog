@@ -1,0 +1,11 @@
+<ul class="pagination">
+  <% for( let index = 1; index <= length; index++ ) { %>
+    <li>
+      <a href="<%= `${pathname}?page=${index}` %>">
+        <button class="<%= `btn-primary ${page == index && "selected"}` %>">
+          <%= index %>
+        </button>
+      </a>
+    </li>
+  <% } %>
+</ul>

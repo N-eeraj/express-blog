@@ -1,0 +1,17 @@
+<% if (blogs.length) { %>
+  <ul class="blogs-list">
+    <% blogs.forEach(blog => { %>
+      <li>
+        <%- include("./card", blog) %>
+      </li>
+    <% }) %>
+  </ul>
+
+  <%- include("../pagination", {
+    length: Math.ceil(total / 12),
+  }) %>
+
+<% } else { %>
+  No Blogs
+<% } %>
+</main>

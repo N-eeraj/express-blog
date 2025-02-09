@@ -1,3 +1,4 @@
+@use "../mixins/blog";
 @use "../partials/pagination";
 
 main {
@@ -11,11 +12,11 @@ main {
   }
 
   .blogs-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    row-gap: 16px;
-    column-gap: 24px;
-    margin-top: 16px;
+    @include blog.list;
+
+    .blog-card {
+      @include blog.card;
+    }
   }
 
   .pagination {

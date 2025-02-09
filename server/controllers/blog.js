@@ -3,7 +3,7 @@ const renderWithUserData = require("../../src/helper/renderWithUserData")
 
 const blogs = [
   {
-    slug: "1",
+    slug: "blog-1",
     title: "Blog 1",
     author: {
       id: 1,
@@ -17,7 +17,7 @@ const blogs = [
     ],
   },
   {
-    slug: "2",
+    slug: "blog-2",
     title: "Blog 2",
     author: {
       id: 2,
@@ -32,7 +32,7 @@ const blogs = [
     ],
   },
   {
-    slug: "3",
+    slug: "blog-3",
     title: "Blog 3",
     author: {
       id: 3,
@@ -45,7 +45,7 @@ const blogs = [
     ],
   },
   {
-    slug: "4",
+    slug: "blog-4",
     title: "Blog 4",
     author: {
       id: 4,

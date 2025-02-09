@@ -1,0 +1,61 @@
+@use "../partials/colors";
+
+@mixin list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  row-gap: 16px;
+  column-gap: 24px;
+  margin-top: 16px;
+}
+
+@mixin card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100%;
+  padding: 12px 16px;
+  background-color: rgba(colors.$accent, 50%);
+  color: colors.$foreground;
+  border-radius: 8px;
+  gap: 8px 4px;
+  transition: 400ms;
+
+  &:hover {
+    background-color: rgba(colors.$accent, 70%);
+  }
+
+  .title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    grid-column: span 2;
+  }
+
+  .description {
+    grid-column: span 2;
+    opacity: 0.8;
+  }
+
+  .name, .created-at {
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+
+  .created-at {
+    text-align: end;
+  }
+
+  .tags {
+    grid-column: span 2;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+
+    .tag {
+      background-color: colors.$foreground;
+      color: colors.$background;
+      padding: 2px 4px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      text-transform: capitalize;
+    }
+  }
+}

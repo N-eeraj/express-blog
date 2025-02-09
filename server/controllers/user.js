@@ -28,6 +28,7 @@ class UserController {
         },
       })
     }
+    req.session.user = userByEmail
     res.redirect("/")
   }
 
@@ -55,7 +56,8 @@ class UserController {
       password: hashedPassword,
     })
     try {
-      const result = await user.save()
+      const userResult = await user.save()
+      req.session.user = userResult
       res.redirect("/")
     } catch(error) {
       console.error(error)
@@ -68,6 +70,8 @@ class UserController {
   }
 
   static async logout(req, res) {
+    req.session.user = null
+
     res.redirect("/login")
   }
 }

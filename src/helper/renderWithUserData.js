@@ -1,8 +1,8 @@
-function renderWithUserData({ isAuthenticated, username }, res, view, data) {
+function renderWithUserData({ isAuthenticated, user }, res, view, data) {
   res.render(view, {
     ...data,
     isAuthenticated,
-    username,
+    user,
   })
 }
 

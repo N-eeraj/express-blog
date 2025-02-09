@@ -1,9 +1,6 @@
 function authenticationMiddleware(req, _res, next) {
-  const isAuthenticated = false
-  const username = null
-
-  req.isAuthenticated = isAuthenticated
-  req.username = username
+  req.isAuthenticated = !!req.session.user
+  req.user = req.session.user
 
   next()
 }

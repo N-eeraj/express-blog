@@ -6,9 +6,9 @@
   </a>
 
   <div class="user-auth">
-    <% if (locals.username) { %>
+    <% if (locals.user) { %>
       <span>
-        <%= username %>
+        <%= user.name %>
       </span>
       <form action="/logout" method="post">
         <button class="btn-primary">

@@ -1,8 +1,28 @@
 @use "./partials/colors";
 
 input {
+  width: 100%;
   padding: 12px;
   background-color: rgba(colors.$foreground, 10%);
   border: none;
   border-radius: 8px;
+}
+
+.input-container {
+  position: relative;
+
+  .password-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    background-color: transparent;
+  }
+}
+
+.error-message {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #D00;
 }

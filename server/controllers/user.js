@@ -14,13 +14,19 @@ class UserController {
       email: req.body.email,
     })
     if (!userByEmail) {
-      console.error("Invalid user email")
-      return res.redirect("/login")
+      return res.render("login", {
+        error: {
+          email: "Invalid email",
+        },
+      })
     }
     const isInvalidPassword = ! await bcrypt.compare(req.body.password, userByEmail.password)
     if (isInvalidPassword) {
-      console.error("Invalid user password")
-      return res.redirect("/login")
+      return res.render("login", {
+        error: {
+          message: "Invalid email or password",
+        },
+      })
     }
     res.redirect("/")
   }
@@ -37,8 +43,11 @@ class UserController {
       email: req.body.email,
     })
     if (userByEmail) {
-      console.error("Email already registered")
-      return res.render("register")
+      return res.render("register", {
+        error: {
+          email: "Email already registered",
+        },
+      })
     }
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const user = new User({
@@ -50,7 +59,11 @@ class UserController {
       res.redirect("/")
     } catch(error) {
       console.error(error)
-      res.render("register")
+      res.render("register", {
+        error: {
+          message: "Oops! Something went wrong"
+        },
+      })
     }
   }
 

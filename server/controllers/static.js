@@ -1,6 +1,6 @@
 const renderWithUserData = require("../../src/helper/renderWithUserData")
 
-class StaticViews {
+class StaticController {
   static index(req, res) {
     renderWithUserData(req, res, "index")
   }
@@ -18,4 +18,4 @@ class StaticViews {
   }
 }
 
-module.exports = StaticViews
+module.exports = StaticController

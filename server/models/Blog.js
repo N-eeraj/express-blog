@@ -12,7 +12,7 @@ const BlogSchema = new Schema({
   },
   author: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
     name: {

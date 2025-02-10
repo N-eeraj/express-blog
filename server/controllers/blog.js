@@ -1,4 +1,5 @@
 const { URL } = require("url")
+const Blog = require("../models/Blog")
 const renderWithUserData = require("../../src/helper/renderWithUserData")
 
 const blogs = [
@@ -60,13 +61,21 @@ const blogs = [
   },
 ]
 
-class Blog {
+class BlogController {
   static createView(req, res) {
     renderWithUserData(req, res, "blog/create")
   }
 
   static async create(req, res) {
-    console.log(req.body)
+    const blog = new Blog({
+      ...req.body,
+      author: {
+        id: req.user._id,
+        name: req.user.name,
+      },
+      tags: [],
+    })
+    blog.save()
     res.redirect("/blog/my-blogs")
   }
 
@@ -104,4 +113,4 @@ class Blog {
   }
 }
 
-module.exports = Blog
+module.exports = BlogController

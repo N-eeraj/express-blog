@@ -25,7 +25,7 @@
 
       <div>
         <div class="input-container">
-          <input name="slug" placeholder="Slug" required />
+          <input id="slug_input" name="slug" placeholder="Slug" required />
         </div>
         <% if (locals.error?.slug) { %>
           <span class="error-message">
@@ -63,4 +63,5 @@
   </main>
   <%- include("../partials/layout/footer") %>
 </body>
+<script src="/scripts/createBlog.js"></script>
 </html>

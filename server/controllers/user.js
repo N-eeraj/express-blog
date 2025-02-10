@@ -41,6 +41,13 @@ class UserController {
   }
 
   static async register(req, res) {
+    if (req.body.password.length < 6) {
+      return res.render("register", {
+        error: {
+          password: "Please enter a longer password",
+        },
+      })
+    }
     const userByEmail = await User.findOne({
       email: req.body.email,
     })

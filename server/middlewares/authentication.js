@@ -1,8 +1,28 @@
-function authenticationMiddleware(req, _res, next) {
-  req.isAuthenticated = !!req.session.user
+function isVisitorMiddleware(req, res, next) {
   req.user = req.session.user
-
   next()
 }
 
-module.exports = authenticationMiddleware
+function isGuestMiddleware(req, res, next) {
+  if (req.session.user) {
+    req.user = req.session.user
+    res.redirect("/")
+  } else {
+    next()
+  }
+}
+
+function isUserMiddleware(req, res, next) {
+  if (req.session.user) {
+    req.user = req.session.user
+    next()
+  } else {
+    res.redirect("/login")
+  }
+}
+
+module.exports = {
+  isVisitorMiddleware,
+  isGuestMiddleware,
+  isUserMiddleware,
+}

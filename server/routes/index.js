@@ -5,17 +5,19 @@ const staticRoutes = require("./static")
 const userRoutes = require("./user")
 const blogsRoutes = require("./blogs")
 
+const {
+  isVisitorMiddleware,
+  isUserMiddleware,
+} = require("../middlewares/authentication")
 const StaticViews = require("../controllers/static")
-const authenticationMiddleware = require("../middlewares/authentication")
 
 const router = express.Router()
 
-router.use(authenticationMiddleware)
 
 router.use(staticRoutes)
 router.use(userRoutes)
-router.use("/blog", blogsRoutes)
+router.use("/blog", isUserMiddleware, blogsRoutes)
 
-router.get("/*", StaticViews.pageNotFound)
+router.get("/*", isVisitorMiddleware, StaticViews.pageNotFound)
 
 module.exports = router

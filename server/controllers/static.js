@@ -13,10 +13,6 @@ class StaticViews {
     renderWithUserData(req, res, "privacy")
   }
 
-  static settings(req, res) {
-    renderWithUserData(req, res, "settings")
-  }
-
   static pageNotFound(_req, res) {
     res.render("404")
   }

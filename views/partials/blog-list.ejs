@@ -1,0 +1,43 @@
+<% if (blogs.length) { %>
+  <ul class="blogs-list">
+    <% blogs.forEach(blog => { %>
+      <li>
+        <a href="<%= `/blog/${blog.slug}` %>">
+          <article class="blog-card">
+            <h3 class="title">
+              <%= blog.title %>
+            </h3>
+        
+            <p class="description">
+              <%= blog.description %>
+            </p>
+        
+            <span class="name">
+              <%= blog.author.name %>
+            </span>
+        
+            <span class="created-at">
+              <%= blog.createdAt.toLocaleDateString("en-IN") %>
+            </span>
+        
+            <ul class="tags">
+              <% blog.tags.forEach(tag => { %>
+                <li class="tag">
+                  <%= tag %>
+                </li>
+              <% }) %>
+            </ul>
+          </article>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+
+  <%- include("./pagination", {
+    length: Math.ceil(total / 12),
+  }) %>
+
+<% } else { %>
+  No Blogs
+<% } %>
+</main>

@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("../partials/layout/head", {
-  title: `${title} | Express Blog`,
+  title: `${blog.title} | Express Blog`,
   pageStyle: "blog/view.css",
 }) %>
 <body>
   <%- include("../partials/layout/navbar") %>
   <main>
     <h2 class="title">
-      <%= title %>
+      <%= blog.title %>
     </h2>
     <span>
-      <%= author.name %>
+      <%= blog.author.name %>
     </span>
     <span>
-      <%= createdAt %>
+      <%= blog.createdAt %>
     </span>
     <ul>
-      <% tags.forEach(tag => { %>
+      <% blog.tags.forEach(tag => { %>
         <li>
           <%= tag %>
         </li>

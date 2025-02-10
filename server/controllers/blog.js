@@ -2,64 +2,7 @@ const { URL } = require("url")
 const Blog = require("../models/Blog")
 const renderWithUserData = require("../../src/helper/renderWithUserData")
 
-const blogs = [
-  {
-    slug: "blog-1",
-    title: "Blog 1",
-    author: {
-      id: 1,
-      name: "Blog 1 Author",
-    },
-    createdAt: new Date(),
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, soluta?",
-    tags: [
-      "tag 1",
-      "tag 3",
-    ],
-  },
-  {
-    slug: "blog-2",
-    title: "Blog 2",
-    author: {
-      id: 2,
-      name: "Blog 2 Author",
-    },
-    createdAt: new Date(),
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, soluta?",
-    tags: [
-      "tag 2",
-      "tag 4",
-      "tag 5",
-    ],
-  },
-  {
-    slug: "blog-3",
-    title: "Blog 3",
-    author: {
-      id: 3,
-      name: "Blog 3 Author",
-    },
-    createdAt: new Date(),
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, soluta?",
-    tags: [
-      "tag 1",
-    ],
-  },
-  {
-    slug: "blog-4",
-    title: "Blog 4",
-    author: {
-      id: 4,
-      name: "Blog 4 Author",
-    },
-    createdAt: new Date(),
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, soluta?",
-    tags: [
-      "tag 1",
-      "tag 4",
-    ],
-  },
-]
+const pageSize = 12
 
 class BlogController {
   static createView(req, res) {
@@ -79,34 +22,53 @@ class BlogController {
     res.redirect("/blog/my-blogs")
   }
 
-  static get(req, res) {
-    const blog = blogs.find(({ slug }) => slug === req.params.slug)
-    
+  static async get(req, res) {
+    const blog = await Blog.findOne({
+      slug: req.params.slug,
+    })
+
     if (!blog) {
       res.statusCode = 404
       renderWithUserData(req, res, "404")
     }
   
-    renderWithUserData(req, res, "blog/view", blog)
+    renderWithUserData(req, res, "blog/view", {
+      blog,
+    })
   }
 
-  static listAll(req, res) {
+  static async listAll(req, res) {
     const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
     const page = req.query.page ?? 1
+
+    const blogs = await Blog
+      .aggregate([
+        { $skip: (page - 1) * pageSize },
+        { $limit: pageSize },
+      ])
+    const total = await Blog.countDocuments()
+
     renderWithUserData(req, res, "blog/list/all", {
       blogs,
-      total: 32,
+      total,
       pathname,
       page,
     })
   }
 
-  static listMyBlogs(req, res) {
+  static async listMyBlogs(req, res) {
     const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
     const page = req.query.page ?? 1
+
+    const blogs = await Blog
+      .find({ "author.id": req.user._id })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+    const total = await Blog.countDocuments({ "author.id": req.user._id })
+
     renderWithUserData(req, res, "blog/list/user", {
-      blogs: blogs.filter(({ author }) => author.id === 2),
-      total: 32,
+      blogs,
+      total,
       pathname,
       page,
     })

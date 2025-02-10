@@ -10,6 +10,56 @@
     <h2 class="title">
       Create Blog
     </h2>
+
+    <form action="/blog/create" method="post">
+      <div>
+        <div class="input-container">
+          <input name="title" placeholder="Title" required />
+        </div>
+        <% if (locals.error?.title) { %>
+          <span class="error-message">
+            <%= error.title %>
+          </span>
+        <% } %>
+      </div>
+
+      <div>
+        <div class="input-container">
+          <input name="slug" placeholder="Slug" required />
+        </div>
+        <% if (locals.error?.slug) { %>
+          <span class="error-message">
+            <%= error.slug %>
+          </span>
+        <% } %>
+      </div>
+
+      <div>
+        <div class="input-container">
+          <textarea name="content" placeholder="Write what are you thinking about..." required class="content"></textarea>
+        </div>
+        <% if (locals.error?.content) { %>
+          <span class="error-message">
+            <%= error.slug %>
+          </span>
+        <% } %>
+      </div>
+
+      <div>
+        <div class="input-container">
+          <textarea name="description" placeholder="Write a short summary" required class="description"></textarea>
+        </div>
+        <% if (locals.error?.description) { %>
+          <span class="error-message">
+            <%= error.slug %>
+          </span>
+        <% } %>
+      </div>
+
+      <button class="btn-primary">
+        Create
+      </button>
+    </form>
   </main>
   <%- include("../partials/layout/footer") %>
 </body>

@@ -1,0 +1,41 @@
+main {
+  padding: 8px 20px;
+
+  form {
+    display: grid;
+    row-gap: 16px;
+    width: 100%;
+    margin-top: 20px;
+
+    textarea {
+      resize: vertical;
+
+      &.content {
+        min-height: 240px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 720px) {
+    form {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 32px;
+      max-width: 980px;
+      margin: 20px auto auto;
+
+      .input-container {
+        height: 100%;
+
+        textarea {
+          height: 100%;
+        }
+      }
+
+      .btn-primary {
+        grid-column: 1 / 2 span;
+        width: 240px;
+        margin-left: auto;
+      }
+    }
+  }
+}

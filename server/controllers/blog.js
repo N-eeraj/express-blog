@@ -61,8 +61,13 @@ const blogs = [
 ]
 
 class Blog {
-  static create(req, res) {
+  static createView(req, res) {
     renderWithUserData(req, res, "blog/create")
+  }
+
+  static async create(req, res) {
+    console.log(req.body)
+    res.redirect("/blog/my-blogs")
   }
 
   static get(req, res) {

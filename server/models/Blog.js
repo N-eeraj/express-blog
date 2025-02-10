@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const BlogSchema = new Schema({
-  slug: {
+  title: {
     type: String,
     required: true,
   },
-  title: {
+  slug: {
     type: String,
     required: true,
   },
@@ -19,6 +19,10 @@ const BlogSchema = new Schema({
       type: String,
       required: true,
     },
+  },
+  content: {
+    type: String,
+    required: true,
   },
   description: {
     type: String,

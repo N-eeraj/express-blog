@@ -16,9 +16,8 @@ class BlogController {
         id: req.user._id,
         name: req.user.name,
       },
-      tags: [],
     })
-    blog.save()
+    await blog.save()
     res.redirect("/blog/my-blogs")
   }
 

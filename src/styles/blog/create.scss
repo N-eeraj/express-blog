@@ -1,3 +1,5 @@
+@use "../partials/colors";
+
 main {
   padding: 8px 20px;
 
@@ -12,6 +14,56 @@ main {
 
       &.content {
         min-height: 240px;
+      }
+    }
+
+    .tags-container {
+      display: flex;
+      flex-direction: column;
+
+      .tag-input-container {
+        display: flex;
+
+        input {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .add-tag-btn {
+          width: fit-content;
+          background-color: #370;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      .label {
+        margin-top: 12px;
+      }
+
+      #tags_list {
+        display: flex;
+        row-gap: 8px;
+        column-gap: 12px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+
+        .tag {
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
+          background-color: rgba(colors.$foreground, 20%);
+          padding: 4px 12px;
+          border-radius: 8px;
+
+          .delete-tag-btn {
+            display: grid;
+            place-content: center;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+          }
+        }
       }
     }
   }
@@ -31,7 +83,20 @@ main {
         }
       }
 
-      .btn-primary {
+      .tags-container {
+        grid-column: 1 / 2 span;
+
+        .tag-input-container {
+          max-width: calc(50% - 16px);
+
+          .add-tag-btn {
+            flex-shrink: 0;
+          }
+
+        }
+      }
+
+      .blog-create-btn {
         grid-column: 1 / 2 span;
         width: 240px;
         margin-left: auto;

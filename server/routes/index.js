@@ -14,7 +14,7 @@ const StaticViews = require("../controllers/static")
 const router = express.Router()
 
 
-router.use(staticRoutes)
+router.use(isVisitorMiddleware, staticRoutes)
 router.use(userRoutes)
 router.use("/blog", isUserMiddleware, blogsRoutes)
 

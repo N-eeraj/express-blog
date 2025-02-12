@@ -1,4 +1,4 @@
-function isVisitorMiddleware(req, res, next) {
+function isVisitorMiddleware(req, _res, next) {
   req.user = req.session.user
   next()
 }

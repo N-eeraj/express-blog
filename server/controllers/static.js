@@ -13,9 +13,9 @@ class StaticController {
     renderWithUserData(req, res, "privacy")
   }
 
-  static pageNotFound(_req, res) {
+  static pageNotFound(req, res) {
     res.statusCode = 404
-    res.render("404")
+    renderWithUserData(req, res, "404")
   }
 }
 

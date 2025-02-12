@@ -80,10 +80,9 @@ class BlogController {
 
   static async delete(req, res) {
     try {
-      console.log(req.params.slug)
-      // await Blog.deleteOne({
-      //   slug: req.params.slug,
-      // })
+      await Blog.deleteOne({
+        _id: req.params.id,
+      })
       res.send({
         success: true,
         message: "Blog deleted"
@@ -115,7 +114,9 @@ class BlogController {
 
   static async update(req, res) {
     try {
-      console.log(req.body)
+      await Blog.findOneAndUpdate({
+        _id: req.params.id,
+      }, req.body)
       res.send({
         success: true,
         message: "Blog Updated"

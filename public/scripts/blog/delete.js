@@ -1,9 +1,9 @@
-const slug = document.getElementById("slug").value
+const id = document.getElementById("id").value
 
 async function confirmDelete() {
   if (confirm("Are you sure you want to delete this blog?")) {
     try {
-      const response = await fetch(`/blog/${slug}`, {
+      const response = await fetch(`/blog/${id}`, {
         method: "delete",
       })
       const { success, error, message } = await response.json()

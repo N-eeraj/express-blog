@@ -16,17 +16,27 @@
     <span>
       <%= blog.createdAt %>
     </span>
+    <% if (user._id === blog.author.id) { %>
+      <a href="<%= `/blog/${blog.slug}/edit` %>">
+      <button class="btn-primary">
+          Edit
+      </button>
+      </a>
+     <button class="btn-primary" onclick="confirmDelete()">
+       Delete
+     </button>
+    <% } %>
     <ul>
       <% blog.tags.forEach(tag => { %>
         <li>
           <%= tag %>
         </li>
       <% }) %>
-      <li>
-      </li>
     </ul>
 
+    <input type="hidden" id="slug" value="<%= blog.slug %>">
   </main>
   <%- include("../partials/layout/footer") %>
 </body>
+<script src="/scripts/blog/delete.js"></script>
 </html>

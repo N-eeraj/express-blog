@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("../partials/layout/head", {
-  title: "Create Blog | Express Blog",
+  title: `${locals.blog ? "Edit " + locals.blog.title : "Create Blog"} | Express Blog`,
   pageStyle: "blog/create.css",
 }) %>
 <body>
   <%- include("../partials/layout/navbar") %>
   <main>
     <h2 class="title">
-      Create Blog
+      <%= locals.blog ? "Edit" : "Create" %>
+      Blog
     </h2>
 
-    <form action="/blog/create" method="post">
+    <form action="/blog/create" method="post" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="id" value="<%= locals.blog?._id %>" />
+
       <div>
         <div class="input-container">
-          <input name="title" placeholder="Title" required />
+          <input name="title" value="<%= locals.blog?.title %>" placeholder="Title" required />
         </div>
         <% if (locals.error?.title) { %>
           <span class="error-message">
@@ -25,7 +28,7 @@
 
       <div>
         <div class="input-container">
-          <input id="slug_input" name="slug" placeholder="Slug" required />
+          <input id="slug_input" name="slug" value="<%= locals.blog?.slug %>" placeholder="Slug" required />
         </div>
         <% if (locals.error?.slug) { %>
           <span class="error-message">
@@ -36,7 +39,7 @@
 
       <div>
         <div class="input-container">
-          <textarea name="content" placeholder="Write what are you thinking about..." required class="content"></textarea>
+          <textarea name="content" placeholder="Write what are you thinking about..." required class="content"><%= locals.blog?.content %></textarea>
         </div>
         <% if (locals.error?.content) { %>
           <span class="error-message">
@@ -47,7 +50,7 @@
 
       <div>
         <div class="input-container">
-          <textarea name="description" placeholder="Write a short summary" required class="description"></textarea>
+          <textarea name="description" placeholder="Write a short summary" required class="description"><%= locals.blog?.description %></textarea>
         </div>
         <% if (locals.error?.description) { %>
           <span class="error-message">
@@ -66,15 +69,27 @@
         <span class="label">
           Tags
         </span>
-        <ul id="tags_list"></ul>
+        <ul id="tags_list">
+          <% locals.blog?.tags.forEach(tag => { %>
+            <li class="tag">
+              <span>
+                <%= tag %>
+              </span>
+              <input type="hidden" name="tag[]" value="<%= tag %>" />
+              <button type="button" class="delete-tag-btn btn-primary" onclick="removeTag(event)">
+                &times;
+              </button>
+            </li>
+          <% }) %>
+        </ul>
       </section>
 
       <button class="blog-create-btn btn-primary">
-        Create
+        <%= locals.blog ? "Update" : "Create" %>
       </button>
     </form>
   </main>
   <%- include("../partials/layout/footer") %>
 </body>
-<script src="/scripts/createBlog.js"></script>
+<script src="/scripts/blog/create.js"></script>
 </html>

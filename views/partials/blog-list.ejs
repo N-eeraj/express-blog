@@ -33,9 +33,11 @@
     <% }) %>
   </ul>
 
-  <%- include("./pagination", {
-    length: Math.ceil(total / 12),
-  }) %>
+  <% if (total > 12) { %>
+    <%- include("./pagination", {
+      length: Math.ceil(total / 12),
+    }) %>
+  <% } %>
 
 <% } else { %>
   No Blogs

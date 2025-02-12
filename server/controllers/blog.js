@@ -30,7 +30,7 @@ class BlogController {
       res.statusCode = 404
       renderWithUserData(req, res, "404")
     }
-  
+
     renderWithUserData(req, res, "blog/view", {
       blog,
     })
@@ -40,12 +40,14 @@ class BlogController {
     const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
     const page = req.query.page ?? 1
 
-    const blogs = await Blog
-      .aggregate([
-        { $skip: (page - 1) * pageSize },
-        { $limit: pageSize },
-      ])
-    const total = await Blog.countDocuments()
+    const [blogs, total] = await Promise.all([
+      Blog
+        .find()
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * pageSize)
+        .limit(pageSize),
+      Blog.countDocuments(),
+    ])
 
     renderWithUserData(req, res, "blog/list/all", {
       blogs,
@@ -59,11 +61,14 @@ class BlogController {
     const pathname = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
     const page = req.query.page ?? 1
 
-    const blogs = await Blog
-      .find({ "author.id": req.user._id })
-      .skip((page - 1) * pageSize)
-      .limit(pageSize)
-    const total = await Blog.countDocuments({ "author.id": req.user._id })
+    const [blogs, total] = await Promise.all([
+      Blog
+        .find({ "author.id": req.user._id })
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * pageSize)
+        .limit(pageSize),
+      Blog.countDocuments({ "author.id": req.user._id }),
+    ])
 
     renderWithUserData(req, res, "blog/list/user", {
       blogs,
@@ -71,6 +76,58 @@ class BlogController {
       pathname,
       page,
     })
+  }
+
+  static async delete(req, res) {
+    try {
+      console.log(req.params.slug)
+      // await Blog.deleteOne({
+      //   slug: req.params.slug,
+      // })
+      res.send({
+        success: true,
+        message: "Blog deleted"
+      })
+    } catch(error) {
+      res.statusCode = 500
+      res.send({
+        success: false,
+        message: "Failed to delete blog",
+        error,
+      })
+    }
+  }
+
+  static async editView(req, res) {
+    const blog = await Blog.findOne({
+      slug: req.params.slug,
+    })
+
+    if (!blog) {
+      res.statusCode = 404
+      renderWithUserData(req, res, "404")
+    }
+
+    renderWithUserData(req, res, "blog/create", {
+      blog
+    })
+  }
+
+  static async update(req, res) {
+    try {
+      console.log(req.body)
+      res.send({
+        success: true,
+        message: "Blog Updated"
+      })
+    } catch(error) {
+      res.statusCode = 500
+      res.send({
+        success: false,
+        message: "Failed to update blog",
+        error,
+      })
+    }
   }
 }
 

@@ -14,6 +14,7 @@ class StaticController {
   }
 
   static pageNotFound(_req, res) {
+    res.statusCode = 404
     res.render("404")
   }
 }

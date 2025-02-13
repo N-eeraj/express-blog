@@ -1,0 +1,42 @@
+@use "../mixins/tags-list";
+
+main {
+  width: min(100%, 1020px);
+  margin: 0 auto;
+  padding: 0 12px;
+
+  header {
+    display: flex;
+    flex-direction: column;
+
+    .actions {
+      align-self: flex-end;
+    }
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 12px;
+    margin-top: 20px;
+
+    .content {
+      grid-column: span 2;
+    }
+
+    .date {
+      text-align: end;
+    }
+  }
+
+  .tags-list {
+    @include tags-list.list;
+  }
+
+  @media screen and (min-width: 720px) {
+    header {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

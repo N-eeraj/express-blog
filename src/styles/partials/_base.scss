@@ -11,7 +11,7 @@
 
   &::selection {
     background-color: rgba(colors.$foreground, 90%);
-    color: colors.$background;
+    color: colors.$accent;
   }
 }
 

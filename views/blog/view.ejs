@@ -7,29 +7,43 @@
 <body>
   <%- include("../partials/layout/navbar") %>
   <main>
-    <h2 class="title">
-      <%= blog.title %>
-    </h2>
-    <span>
-      <%= blog.author.name %>
-    </span>
-    <span>
-      <%= blog.createdAt %>
-    </span>
-    <% if (user._id === blog.author.id) { %>
-      <a href="<%= `/blog/${blog.slug}/edit` %>">
-      <button class="btn-primary">
-          Edit
-      </button>
-      </a>
-     <button class="btn-primary" onclick="confirmDelete()">
-       Delete
-     </button>
-    <% } %>
-    <ul>
+    <header>
+      <h2 class="title">
+        <%= blog.title %>
+      </h2>
+      <% if (user._id === blog.author.id) { %>
+        <div class="actions">
+          <a href="<%= `/blog/${blog.slug}/edit` %>">
+          <button class="btn-primary">
+              Edit
+          </button>
+          </a>
+         <button class="btn-primary" onclick="confirmDelete()">
+           Delete
+         </button>
+        </div>
+      <% } %>
+    </header>
+    <section class="body">
+      <p class="content">
+        <%= blog.content %>
+      </p>
+      <span class="author">
+        Author:
+        <strong>
+          <%= blog.author.name %>
+        </strong>
+      </span>
+      <span class="date">
+        <%= blog.createdAt.toLocaleDateString("en-IN") %>
+      </span>
+    </section>
+    <ul class="tags-list">
       <% blog.tags.forEach(tag => { %>
-        <li>
-          <%= tag %>
+        <li class="tag">
+          <span>
+            <%= tag %>
+          </span>
         </li>
       <% }) %>
     </ul>

@@ -83,10 +83,7 @@ class BlogController {
       await Blog.deleteOne({
         _id: req.params.id,
       })
-      res.send({
-        success: true,
-        message: "Blog deleted"
-      })
+      res.redirect("/blog/my-blogs")
     } catch(error) {
       res.statusCode = 500
       res.send({
@@ -117,10 +114,7 @@ class BlogController {
       await Blog.findOneAndUpdate({
         _id: req.params.id,
       }, req.body)
-      res.send({
-        success: true,
-        message: "Blog Updated"
-      })
+      res.redirect("/blog/my-blogs")
     } catch(error) {
       res.statusCode = 500
       res.send({

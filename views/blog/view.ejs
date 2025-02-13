@@ -18,9 +18,11 @@
               Edit
           </button>
           </a>
-         <button class="btn-primary" onclick="confirmDelete()">
-           Delete
-         </button>
+          <form action="<%= `/blog/${blog._id}?_method=DELETE` %>" method="post">
+            <button class="btn-primary">
+              Delete
+            </button>
+         </form>
         </div>
       <% } %>
     </header>
@@ -52,5 +54,4 @@
   </main>
   <%- include("../partials/layout/footer") %>
 </body>
-<script src="/scripts/blog/delete.js"></script>
 </html>

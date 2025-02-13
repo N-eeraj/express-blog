@@ -1,5 +1,6 @@
 const express = require("express")
 const session = require("express-session")
+const methodOverride = require("method-override")
 require("dotenv").config()
 
 const connectDB = require("./server/config/db")
@@ -10,6 +11,7 @@ app.set("view engine", "ejs")
 app.use(express.static("./public"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(methodOverride("_method"))
 
 app.use(
   session({

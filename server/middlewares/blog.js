@@ -9,7 +9,7 @@ async function isBlogIdAuthorMiddleware(req, res, next) {
       success: false,
       message: "Blog not found",
     })
-  } else if (author.id === req.session.user._id) {
+  } else if (blog.author.id === req.session.user._id) {
     next()
   } else {
     res.statusCode = 403

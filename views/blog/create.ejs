@@ -12,8 +12,7 @@
       Blog
     </h2>
 
-    <form action="/blog/create" method="post" onsubmit="handleSubmit(event)">
-      <input type="hidden" name="id" value="<%= locals.blog?._id %>" />
+    <form action="<%= locals.blog?._id ? `/blog/${locals.blog._id}/update?_method=PATCH` : "/blog/create" %>" method="post">
 
       <div>
         <div class="input-container">
@@ -91,5 +90,5 @@
   </main>
   <%- include("../partials/layout/footer") %>
 </body>
-<script src="/scripts/blog/create.js"></script>
+<script src="/scripts/createBlog.js"></script>
 </html>

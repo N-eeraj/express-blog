@@ -57,29 +57,3 @@ tagsInput.addEventListener("input", () => {
   actualTag = actualTag.replaceAll(/[^a-zA-Z0-9_]/g, "")
   tagsInput.value = actualTag
 })
-
-// prevent form submission if update
-async function handleSubmit(event) {
-  if (event.target.id.value) {
-    event.preventDefault()
-    try {
-      const formData = new FormData(event.target)
-      const jsonData = Object.fromEntries(formData.entries())
-      const response = await fetch(`/blog/${event.target.id.value}/update`, {
-        method: "PATCH",
-        body: JSON.stringify(jsonData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      const { success, error, message } = await response.json()
-      if (!success) {
-        alert(message)
-        throw error
-      }
-      window.location = "/blog/my-blogs"
-    } catch(error) {
-      console.error(error)
-    }
-  }
-}

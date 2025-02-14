@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs")
 const User = require("../models/User")
-const renderWithUserData = require("../../src/helper/renderWithUserData")
+const renderWithUserData = require("../../src/helpers/renderWithUserData")
 
 class UserController {
   static loginView(req, res) {
@@ -90,6 +90,7 @@ class UserController {
   }
 
   static async update(req, res) {
+    console.log(req.body)
     res.redirect("/")
   }
 }

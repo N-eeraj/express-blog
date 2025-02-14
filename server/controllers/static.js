@@ -1,4 +1,5 @@
-const renderWithUserData = require("../../src/helper/renderWithUserData")
+const renderWithUserData = require("../../src/helpers/renderWithUserData")
+const renderPageNotFound = require("../../src/helpers/renderPageNotFound")
 
 class StaticController {
   static index(req, res) {
@@ -14,8 +15,7 @@ class StaticController {
   }
 
   static pageNotFound(req, res) {
-    res.statusCode = 404
-    renderWithUserData(req, res, "404")
+    renderPageNotFound(req, res)
   }
 }
 

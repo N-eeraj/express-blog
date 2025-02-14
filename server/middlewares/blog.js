@@ -1,14 +1,14 @@
 const Blog = require("../models/Blog")
-const renderWithUserData = require("../../src/helper/renderWithUserData")
+const { default: mongoose } = require("mongoose")
+const renderPageNotFound = require("../../src/helpers/renderPageNotFound")
 
 async function isBlogIdAuthorMiddleware(req, res, next) {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    renderPageNotFound(req, res)
+  }
   const blog = await Blog.findById(req.params.id)
   if (!blog) {
-    res.statusCode = 404
-    res.send({
-      success: false,
-      message: "Blog not found",
-    })
+    renderPageNotFound(req, res)
   } else if (blog.author.id === req.session.user._id) {
     next()
   } else {
@@ -27,8 +27,7 @@ async function isBlogSlugAuthorMiddleware(req, res, next) {
   if (blog?.author.id === req.session.user._id) {
     next()
   } else {
-    res.statusCode = 404
-    renderWithUserData(req, res, "404")
+    renderPageNotFound(req, res)
   }
 }
 

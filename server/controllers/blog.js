@@ -1,6 +1,7 @@
 const { URL } = require("url")
 const Blog = require("../models/Blog")
-const renderWithUserData = require("../../src/helper/renderWithUserData")
+const renderWithUserData = require("../../src/helpers/renderWithUserData")
+const renderPageNotFound = require("../../src/helpers/renderPageNotFound")
 
 const pageSize = 12
 
@@ -27,8 +28,7 @@ class BlogController {
     })
 
     if (!blog) {
-      res.statusCode = 404
-      renderWithUserData(req, res, "404")
+      renderPageNotFound(req, res)
     }
 
     renderWithUserData(req, res, "blog/view", {
@@ -100,8 +100,7 @@ class BlogController {
     })
 
     if (!blog) {
-      res.statusCode = 404
-      renderWithUserData(req, res, "404")
+      renderPageNotFound(req, res)
     }
 
     renderWithUserData(req, res, "blog/create", {

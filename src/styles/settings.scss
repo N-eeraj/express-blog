@@ -1,0 +1,26 @@
+$gap: 16px;
+
+main {
+  width: min(100%, 720px);
+  padding: 0 12px;
+  margin: 0 auto;
+
+  form {
+    display: grid;
+    gap: $gap;
+    width: min(100%, 720px);
+    margin: 20px auto 0;
+  }
+
+  @media screen and (min-width: 720px) {
+    form {
+      grid-template-columns: repeat(2, 1fr);
+
+      .btn-primary {
+        grid-column: span 2;
+        justify-self: end;
+        width: calc(50% - $gap / 2);
+      }
+    }
+  }
+}

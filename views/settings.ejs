@@ -10,7 +10,69 @@
     <h2 class="title">
       Settings
     </h2>
+    <form action="/update-profile?_method=PATCH" method="post">
+      <div>
+        <div class="input-container">
+          <input name="name" placeholder="Name" value="<%= user.name %>" required />
+        </div>
+        <% if (locals.error?.name) { %>
+          <span class="error-message">
+            <%= error.name %>
+          </span>
+        <% } %>
+      </div>
+
+      <div>
+        <div class="input-container">
+          <input type="email" name="email" placeholder="Email" value="<%= user.email %>" required />
+        </div>
+        <% if (locals.error?.email) { %>
+          <span class="error-message">
+            <%= error.email %>
+          </span>
+        <% } %>
+      </div>
+
+      <div>
+        <div class="input-container">
+          <input type="password" name="password" placeholder="Current Password" />
+          <button type="button" class="password-toggle-btn" onclick="togglePassword(event)">
+            Show
+          </button>
+        </div>
+        <% if (locals.error?.password) { %>
+          <span class="error-message">
+            <%= error.password %>
+          </span>
+        <% } %>
+      </div>
+
+      <div>
+        <div class="input-container">
+          <input type="password" name="new_password" placeholder="New Password" />
+          <button type="button" class="password-toggle-btn" onclick="togglePassword(event)">
+            Show
+          </button>
+        </div>
+        <% if (locals.error?.password) { %>
+          <span class="error-message">
+            <%= error.new_password %>
+          </span>
+        <% } %>
+      </div>
+
+      <% if (locals.error?.message) { %>
+        <span class="error-message">
+          <%= error.message %>
+        </span>
+      <% } %>
+
+      <button class="btn-primary">
+        Update
+      </button>
+    </form>
   </main>
   <%- include("./partials/layout/footer") %>
 </body>
+<script src="/scripts/passwordToggle.js"></script>
 </html>

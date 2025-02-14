@@ -84,7 +84,13 @@ class UserController {
   }
 
   static settings(req, res) {
-    renderWithUserData(req, res, "settings")
+    renderWithUserData(req, res, "settings", {
+      user: req.user
+    })
+  }
+
+  static async update(req, res) {
+    res.redirect("/")
   }
 }
 

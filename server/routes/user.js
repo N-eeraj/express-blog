@@ -14,5 +14,6 @@ userRouter.post("/register", isGuestMiddleware, User.register)
 
 userRouter.post("/logout", isUserMiddleware, User.logout)
 userRouter.get("/settings", isUserMiddleware, User.settings)
+userRouter.patch("/update-profile", isUserMiddleware, User.update)
 
 module.exports = userRouter

@@ -2,7 +2,7 @@ const slugInput = document.getElementById("slug_input")
 const tagsInput = document.getElementById("tags_input")
 const tagsList = document.getElementById("tags_list")
 
-// alphanumeric slug with - separation
+// Alphanumeric slug with - separation
 slugInput.addEventListener("input", ({ target }) => {
   let actualSlug = target.value.replaceAll(" ", "-")
   actualSlug = actualSlug.replaceAll(/[^a-zA-Z0-9-]/g, "")
@@ -51,7 +51,7 @@ tagsInput.addEventListener("keypress", (event) => {
   }
 })
 
-// alphanumeric tag with _ separation
+// Alphanumeric tag with _ separation
 tagsInput.addEventListener("input", () => {
   let actualTag = tagsInput.value.replaceAll(" ", "_")
   actualTag = actualTag.replaceAll(/[^a-zA-Z0-9_]/g, "")

@@ -14,22 +14,22 @@
     <form action="/register" method="post">
       <div>
         <div class="input-container">
-          <input type="email" name="email" placeholder="Email" required />
+          <input name="name" placeholder="Name" required />
         </div>
-        <% if (locals.error?.email) { %>
+        <% if (locals.errors?.name) { %>
           <span class="error-message">
-            <%= error.email %>
+            <%= errors.name %>
           </span>
         <% } %>
       </div>
 
       <div>
         <div class="input-container">
-          <input name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
         </div>
-        <% if (locals.error?.name) { %>
+        <% if (locals.errors?.email) { %>
           <span class="error-message">
-            <%= error.name %>
+            <%= errors.email %>
           </span>
         <% } %>
       </div>
@@ -41,16 +41,16 @@
             Show
           </button>
         </div>
-        <% if (locals.error?.password) { %>
+        <% if (locals.errors?.password) { %>
           <span class="error-message">
-            <%= error.password %>
+            <%= errors.password %>
           </span>
         <% } %>
       </div>
 
-      <% if (locals.error?.message) { %>
+      <% if (locals.errors?.message) { %>
         <span class="error-message">
-          <%= error.message %>
+          <%= errors.message %>
         </span>
       <% } %>
 

@@ -18,9 +18,9 @@
         <div class="input-container">
           <input name="title" value="<%= locals.blog?.title %>" placeholder="Title" required />
         </div>
-        <% if (locals.error?.title) { %>
+        <% if (locals.errors?.title) { %>
           <span class="error-message">
-            <%= error.title %>
+            <%= errors.title %>
           </span>
         <% } %>
       </div>
@@ -29,9 +29,9 @@
         <div class="input-container">
           <input id="slug_input" name="slug" value="<%= locals.blog?.slug %>" placeholder="Slug" required />
         </div>
-        <% if (locals.error?.slug) { %>
+        <% if (locals.errors?.slug) { %>
           <span class="error-message">
-            <%= error.slug %>
+            <%= errors.slug %>
           </span>
         <% } %>
       </div>
@@ -40,9 +40,9 @@
         <div class="input-container">
           <textarea name="content" placeholder="Write what are you thinking about..." required class="content"><%= locals.blog?.content %></textarea>
         </div>
-        <% if (locals.error?.content) { %>
+        <% if (locals.errors?.content) { %>
           <span class="error-message">
-            <%= error.slug %>
+            <%= errors.slug %>
           </span>
         <% } %>
       </div>
@@ -51,9 +51,9 @@
         <div class="input-container">
           <textarea name="description" placeholder="Write a short summary" required class="description"><%= locals.blog?.description %></textarea>
         </div>
-        <% if (locals.error?.description) { %>
+        <% if (locals.errors?.description) { %>
           <span class="error-message">
-            <%= error.slug %>
+            <%= errors.slug %>
           </span>
         <% } %>
       </div>

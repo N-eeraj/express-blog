@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs")
 const User = require("../models/User")
-const renderWithUserData = require("../../src/helpers/renderWithUserData")
+const renderSettings = require("../../src/helpers/renderSettings")
 
 class UserController {
   static loginView(req, res) {
@@ -15,16 +15,18 @@ class UserController {
       email: req.body.email,
     })
     if (!userByEmail) {
+      res.statusCode = 401
       return res.render("login", {
-        error: {
-          email: "Invalid email",
+        errors: {
+          message: "Invalid email or password",
         },
       })
     }
     const isInvalidPassword = ! await bcrypt.compare(req.body.password, userByEmail.password)
     if (isInvalidPassword) {
+      res.statusCode = 401
       return res.render("login", {
-        error: {
+        errors: {
           message: "Invalid email or password",
         },
       })
@@ -43,7 +45,7 @@ class UserController {
   static async register(req, res) {
     if (req.body.password.length < 6) {
       return res.render("register", {
-        error: {
+        errors: {
           password: "Please enter a longer password",
         },
       })
@@ -53,7 +55,7 @@ class UserController {
     })
     if (userByEmail) {
       return res.render("register", {
-        error: {
+        errors: {
           email: "Email already registered",
         },
       })
@@ -68,9 +70,8 @@ class UserController {
       req.session.user = userResult
       res.redirect("/")
     } catch(error) {
-      console.error(error)
       res.render("register", {
-        error: {
+        errors: {
           message: "Oops! Something went wrong"
         },
       })
@@ -84,13 +85,60 @@ class UserController {
   }
 
   static settings(req, res) {
-    renderWithUserData(req, res, "settings", {
-      user: req.user
-    })
+    renderSettings(req, res)
   }
 
   static async update(req, res) {
-    console.log(req.body)
+
+    // Validate if email is taken
+    if (req.user.email !== req.body.email) {
+      const userByEmail = await User.findOne({
+        email: req.body.email,
+      })
+      if (userByEmail) {
+        return renderSettings(req, res, {
+          email: "Email already in use",
+        })
+      }
+    }
+
+    let user
+    let updatedData = {
+      name: req.body.name,
+      email: req.body.email,
+    }
+
+    if (req.body.new_password.length > 0) {
+      // Validate new password length
+      if (req.body.new_password.length < 6) {
+        return renderSettings(req, res, {
+          new_password: "Please enter a longer password",
+        })
+      }
+
+      // Validate current password
+      if (!req.body.password) {
+        return renderSettings(req, res, {
+          password: "Please enter password",
+        })
+      }
+      user = await User.findById(req.user._id)
+      const isInvalidPassword = ! await bcrypt.compare(req.body.password, user.password)
+      if (isInvalidPassword) {
+        return renderSettings(req, res, {
+          password: "Incorrect Password",
+        })
+      }
+      const hashedPassword = await bcrypt.hash(req.body.new_password, 10)
+      updatedData.password = hashedPassword
+    } else {
+      user = await User.findById(req.user._id)
+    }
+
+    user.set(updatedData)
+    await user.save()
+    req.session.user = user
+
     res.redirect("/")
   }
 }

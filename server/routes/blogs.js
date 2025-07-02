@@ -9,13 +9,17 @@ const blogsRouter = express.Router()
 
 blogsRouter.get("/all", Blog.listAll)
 blogsRouter.get("/my-blogs", Blog.listMyBlogs)
-blogsRouter.get("/create", Blog.createView)
-blogsRouter.post("/create", Blog.create)
+
+blogsRouter.route("/create")
+  .get(Blog.createView)
+  .post(Blog.create)
 
 blogsRouter.get("/:slug", Blog.get)
 blogsRouter.get("/:slug/edit", isBlogSlugAuthorMiddleware, Blog.editView)
 
-blogsRouter.delete("/:id", isBlogIdAuthorMiddleware, Blog.delete)
-blogsRouter.patch("/:id/update", isBlogIdAuthorMiddleware, Blog.update)
+blogsRouter.route("/:id")
+  .all(isBlogIdAuthorMiddleware)
+  .delete(Blog.delete)
+  .patch(Blog.update)
 
 module.exports = blogsRouter

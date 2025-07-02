@@ -7,10 +7,15 @@ const User = require("../controllers/user")
 
 const userRouter = express.Router()
 
-userRouter.get("/login", isGuestMiddleware, User.loginView)
-userRouter.post("/login", isGuestMiddleware, User.login)
-userRouter.get("/register", isGuestMiddleware, User.registerView)
-userRouter.post("/register", isGuestMiddleware, User.register)
+userRouter.route("/login")
+  .all(isGuestMiddleware)
+  .get(User.loginView)
+  .post(User.login)
+
+userRouter.route("/register")
+  .all(isGuestMiddleware)
+  .get(User.registerView)
+  .post(User.register)
 
 userRouter.post("/logout", isUserMiddleware, User.logout)
 userRouter.get("/settings", isUserMiddleware, User.settings)

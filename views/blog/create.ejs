@@ -12,7 +12,7 @@
       Blog
     </h2>
 
-    <form action="<%= locals.blog?._id ? `/blog/${locals.blog._id}/update?_method=PATCH` : "/blog/create" %>" method="post">
+    <form action="<%= locals.blog?._id ? `/blog/${locals.blog._id}?_method=PATCH` : "/blog/create" %>" method="post">
 
       <div>
         <div class="input-container">
@@ -74,7 +74,7 @@
               <span>
                 <%= tag %>
               </span>
-              <input type="hidden" name="tag[]" value="<%= tag %>" />
+              <input type="hidden" name="tags[]" value="<%= tag %>" />
               <button type="button" class="delete-tag-btn btn-primary" onclick="removeTag(event)">
                 &times;
               </button>
